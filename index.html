@@ -7,22 +7,22 @@
   <meta name="keywords" content="Speculative Decoding, RLVR, PPO, GRPO, DAPO, Reinforcement Learning, LLMs" />
   <title>SPEC-RL: Accelerating On-Policy Reinforcement Learning via Speculative Rollouts</title>
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
-  <!-- Bulma + vendor css (keep same folder structure as LongSpec template) -->
+
+  <!-- Bulma core CSS (layout only) -->
   <link rel="stylesheet" href="./static/css/bulma.min.css" />
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+
+  <!-- ✅ Bootstrap CSS for Carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+
+  <!-- Your site CSS -->
   <link rel="stylesheet" href="./static/css/index.css" />
   <link rel="icon" href="./static/images/favicon.svg">
-
-  <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
 </head>
 <body>
 
@@ -34,6 +34,7 @@
         <div class="column is-four-fifths has-text-centered">
           <img src="static/images/page.jpg" alt="Icon" style="display:inline;height:8rem;vertical-align:top;" />
           <h1 class="title is-2 publication-title">SPEC-RL: Accelerating On-Policy Reinforcement Learning via Speculative Rollouts</h1>
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://bingshuailiu.github.io/">Bingshuai Liu</a><sup>1,+</sup>,
@@ -45,56 +46,43 @@
               Zijun Min<sup>1,+</sup>,
             </span>
           </div>
-          
+
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Liang Yao<sup>2</sup>,
-            </span>
-            <span class="author-block">
-              Haibo Zhang<sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://nlp.csai.tsinghua.edu.cn/~ly/">Yang Liu</a><sup>3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://sites.google.com/view/anxiang-zeng/home">Anxiang Zeng</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://cdmc.xmu.edu.cn/info/1010/1054.htm">Jinsong Su</a><sup>1,*</sup>
-            </span>
+            <span class="author-block">Liang Yao<sup>2</sup>,</span>
+            <span class="author-block">Haibo Zhang<sup>2</sup>,</span>
+            <span class="author-block"><a href="https://nlp.csai.tsinghua.edu.cn/~ly/">Yang Liu</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://sites.google.com/view/anxiang-zeng/home">Anxiang Zeng</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://cdmc.xmu.edu.cn/info/1010/1054.htm">Jinsong Su</a><sup>1,*</sup></span>
           </div>
-          
+
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup> Xiamen University,</span>
             <span class="author-block"><sup>2</sup> Shopee LLM Team,</span>
             <span class="author-block"><sup>3</sup> Institute for AI Industry Research (AIR), Tsinghua University</span>
-            <br>
+            <br/>
             <span class="eql-cntrb">
               <small>
                 <sup>+</sup> Equal Contribution<br>
-                <sup>*</sup> Corresponding Author: 
+                <sup>*</sup> Corresponding Author:
                 <a href="mailto:jssu@xmu.edu.cn">jssu@xmu.edu.cn</a>
               </small>
             </span>
           </div>
-          
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <a href="./static/paper/spec_rl.pdf" class="external-link button is-normal is-rounded is-dark">
+                <a href="./static/SPEC-RL.pdf" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span>
                   <span>Paper (PDF)</span>
                 </a>
               </span>
-              <!-- arXiv -->
               <span class="link-block">
                 <a href="#" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv (coming soon)</span>
                 </a>
               </span>
-              <!-- Code -->
               <span class="link-block">
                 <a href="https://github.com/ShopeeLLM/Spec-RL" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
@@ -103,6 +91,7 @@
               </span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -147,27 +136,6 @@
   </div>
 </section>
 
-<!-- ================= MOTIVATION / CHALLENGES ================= -->
-<!-- <section class="section" id="motivation">
-  <div class="container is-max-widescreen">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Motivation: Overlap in Consecutive Rollouts</h2>
-        <div class="content has-text-justified">
-          <p>
-            Across training epochs and algorithms (GRPO/PPO/DAPO), we observe high token overlap between consecutive rollouts. 
-            Rather than regenerate long prefixes, SPEC-RL <em>accepts</em> the longest consistent prefix from cached responses and 
-            generates only the remaining suffix.
-          </p>
-          <div class="figure" style="text-align:center;">
-            <img src="static/images/motivation.jpg" alt="Overlap / Motivation" style="width:40%; max-width:900px; min-width:280px;" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <!-- ================= METHOD ================= -->
 <section class="section" id="method">
   <div class="container is-max-widescreen">
@@ -175,8 +143,6 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
-          <!-- <div class="figure" style="text-align:center;"> -->
-            <!-- placeholder method diagram -->
           <p>
             <strong>SPEC-RL</strong> accelerates on-policy RLVR by reusing verified prefixes from cached rollouts. 
             It adapts speculative decoding to the RL setting, treating the <em>previous policy</em> as the draft model and 
@@ -187,15 +153,16 @@
 
           <div class="figure" style="text-align:center; margin-top:1em;">
             <img src="static/images/method.jpg" alt="SPEC-RL Overview" style="width:100%; max-width:900px; min-width:280px;" />
-            <!-- </div> -->
           </div>
+
           <ol>
             <li><strong>Prefix Reuse via Verification.</strong> Cached rollouts from the previous epoch are treated as drafts. Tokens consistent with the current policy are accepted; others are discarded once a mismatch is detected.</li>
+            <li><strong>Lenience.</strong> A mild lenience rule flexibly expands acceptance to improve prefix reuse and acceleration.</li>
             <li><strong>Batched Continuation.</strong> The remaining suffixes are generated in a single batched call to the rollout engine and stitched with the verified prefixes.</li>
             <li><strong>Seamless Integration.</strong> SPEC-RL operates purely at the rollout stage, requiring no change to objectives, rewards, or optimization algorithms.</li>
           </ol>
+
           <div class="figure" style="text-align:center;">
-            <!-- placeholder method diagram -->
             <img src="static/images/algorithm.jpg" alt="SPEC-RL Algorithm" style="width:100%; max-width:900px; min-width:280px;" />
           </div>
         </div>
@@ -261,7 +228,6 @@
 </section>
 
 <!-- ================= END-TO-END TIME BREAKDOWN ================= -->
-<!-- ================= END-TO-END TIME BREAKDOWN ================= -->
 <section class="section" id="e2e-breakdown">
   <div class="container is-max-widescreen">
     <div class="columns is-centered has-text-centered">
@@ -316,37 +282,54 @@
           <p>
             To illustrate how <strong>SPEC-RL</strong> reuses overlapping rollouts across epochs, 
             we present four representative cases comparing the responses generated at 
-            <strong>epoch <em>t−1</em></strong> (previous policy) and <strong>epoch <em>t</em></strong> (current policy). 
+            <strong>epoch <em>i</em> − 1</strong> (previous policy) and <strong>epoch <em>i</em></strong> (current policy). 
             In each example, <span style="color:#d62728;font-weight:bold;">highlighted segments</span> 
-            indicate the <em>verified prefixes</em> reused by SPEC-RL, while the remaining parts 
-            are newly generated continuations under the current policy. 
-            This visualization shows how SPEC-RL effectively avoids redundant decoding 
-            while maintaining reasoning consistency.
+            indicate the <em>verified prefixes</em> reused by SPEC-RL, while the remaining parts are newly generated 
+            continuations under the current policy. This visualization shows how SPEC-RL effectively avoids 
+            redundant generation while maintaining reasoning consistency.
           </p>
 
           <!-- Case 1 -->
           <div class="figure" style="text-align:center; margin-top:2em;">
-            <img src="static/images/case1.jpg" alt="Case 1" style="width:100%; max-width:1000px; min-width:280px;" />
-            <p class="is-size-6" style="margin-top:0.5em;"><strong>Case 1</strong></p>
+            <img src="static/images/case1.jpg" alt="Case Study 1: Verified Prefix Reuse" style="width:100%; max-width:1000px; min-width:280px;" />
+            <p class="is-size-6" style="margin-top:0.5em;">
+              <strong>Case 1:</strong> SPEC-RL identifies a long verified prefix shared between epoch <em>i</em> and epoch <em>i−1</em>, 
+              skipping redundant reasoning steps and resuming generation only at the first divergence.
+            </p>
           </div>
 
           <!-- Case 2 -->
           <div class="figure" style="text-align:center; margin-top:2em;">
-            <img src="static/images/case2.jpg" alt="Case 2" style="width:100%; max-width:1000px; min-width:280px;" />
-            <p class="is-size-6" style="margin-top:0.5em;"><strong>Case 2</strong></p>
+            <img src="static/images/case2.jpg" alt="Case Study 2: Verified Prefix Reuse" style="width:100%; max-width:1000px; min-width:280px;" />
+            <p class="is-size-6" style="margin-top:0.5em;">
+              <strong>Case 2:</strong> Verified prefixes cover early reasoning steps, 
+              allowing SPEC-RL to focus computation on the refined suffix where policy updates introduce changes.
+            </p>
           </div>
 
           <!-- Case 3 -->
           <div class="figure" style="text-align:center; margin-top:2em;">
-            <img src="static/images/case3.jpg" alt="Case 3" style="width:100%; max-width:1000px; min-width:280px;" />
-            <p class="is-size-6" style="margin-top:0.5em;"><strong>Case 3</strong></p>
+            <img src="static/images/case3.jpg" alt="Case Study 3: Verified Prefix Reuse" style="width:100%; max-width:1000px; min-width:280px;" />
+            <p class="is-size-6" style="margin-top:0.5em;">
+              <strong>Case 3:</strong> The reused prefix spans multiple reasoning hops, 
+              demonstrating SPEC-RL’s ability to retain stable sub-sequences across policy updates.
+            </p>
           </div>
 
           <!-- Case 4 -->
           <div class="figure" style="text-align:center; margin-top:2em;">
-            <img src="static/images/case4.jpg" alt="Case 4" style="width:100%; max-width:1000px; min-width:280px;" />
-            <p class="is-size-6" style="margin-top:0.5em;"><strong>Case 4</strong></p>
+            <img src="static/images/case4.jpg" alt="Case Study 4: Verified Prefix Reuse" style="width:100%; max-width:1000px; min-width:280px;" />
+            <p class="is-size-6" style="margin-top:0.5em;">
+              <strong>Case 4:</strong> Even with moderate policy drift, SPEC-RL selectively reuses verified tokens, 
+              providing efficient rollouts without compromising fidelity.
+            </p>
           </div>
+
+          <p style="margin-top:2em;">
+            These qualitative examples confirm that <strong>SPEC-RL</strong> reliably identifies and reuses 
+            consistent reasoning fragments across epochs, yielding substantial rollout savings while preserving 
+            correctness and coherence in final responses.
+          </p>
 
         </div>
       </div>
@@ -354,25 +337,12 @@
   </div>
 </section>
 
-<!-- ================= BIBTEX ================= -->
-<!-- <section class="section" id="bibtex">
-  <div class="container is-max-widescreen content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{specrl_iclr2026,
-  author    = {Anonymous},
-  title     = {SPEC-RL: Accelerating On-Policy Reinforcement Learning via Speculative Rollouts},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2026},
-  note      = {Under review; replace with final citation}
-}</code></pre>
-  </div>
-</section> -->
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="./static/paper/spec_rl.pdf"><i class="fas fa-file-pdf"></i></a>
+      <a class="icon-link" href="./static/SPEC-RL.pdf"><i class="fas fa-file-pdf"></i></a>
       <a class="icon-link" href="#"><i class="fab fa-github"></i></a>
     </div>
     <div class="columns is-centered">
@@ -383,13 +353,16 @@
             <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
             and adapted from sources including <a href="http://nerfies.github.io">Nerfies</a> / LongSpec template.
           </p>
-          <p>
-          </p>
         </div>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- ========== JS (placed at end; order matters) ========== -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
